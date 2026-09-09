@@ -32,6 +32,10 @@ function Sidebar() {
         <NavLink to="/medical-records">
           Rekam Medis
         </NavLink>
+
+        <NavLink to="/prescriptions">
+          Resep
+        </NavLink>
       </nav>
 
       <button onClick={handleLogout}>

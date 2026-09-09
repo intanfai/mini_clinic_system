@@ -34,10 +34,7 @@ function Registrations() {
     } catch (error) {
       console.error("Gagal mengambil data pendaftaran:", error);
 
-      setError(
-        error.response?.data?.message ||
-          "Gagal mengambil data pendaftaran."
-      );
+      setError(error.response?.data?.message || "Gagal mengambil data pendaftaran.");
     } finally {
       setLoading(false);
     }
@@ -88,9 +85,7 @@ function Registrations() {
 
     // Kalau dokter berubah, poli otomatis mengikuti dokter
     if (name === "doctor_id") {
-      const selectedDoctor = doctors.find(
-        (doctor) => doctor.id === Number(value)
-      );
+      const selectedDoctor = doctors.find((doctor) => doctor.id === Number(value));
 
       setForm((prev) => ({
         ...prev,
@@ -130,10 +125,23 @@ function Registrations() {
     } catch (error) {
       console.error("Gagal menambahkan pendaftaran:", error);
 
-      alert(
-        error.response?.data?.message ||
-          "Gagal menambahkan pendaftaran."
-      );
+      alert(error.response?.data?.message || "Gagal menambahkan pendaftaran.");
+    }
+  };
+
+  const handleStatusChange = async (registrationId, newStatus) => {
+    try {
+      await api.put(`/registrations/${registrationId}`, {
+        status: newStatus,
+      });
+
+      alert("Status pendaftaran berhasil diperbarui.");
+
+      getRegistrations();
+    } catch (error) {
+      console.error("Gagal mengubah status:", error);
+
+      alert(error.response?.data?.message || "Gagal mengubah status pendaftaran.");
     }
   };
 
@@ -146,9 +154,7 @@ function Registrations() {
 
         <p>Kelola data pendaftaran kunjungan pasien.</p>
 
-        <button onClick={() => setShowForm(!showForm)}>
-          {showForm ? "Tutup Form" : "+ Tambah Pendaftaran"}
-        </button>
+        <button onClick={() => setShowForm(!showForm)}>{showForm ? "Tutup Form" : "+ Tambah Pendaftaran"}</button>
 
         {showForm && (
           <form onSubmit={handleSubmit}>
@@ -158,12 +164,7 @@ function Registrations() {
               <label>Pasien</label>
               <br />
 
-              <select
-                name="patient_id"
-                value={form.patient_id}
-                onChange={handleChange}
-                required
-              >
+              <select name="patient_id" value={form.patient_id} onChange={handleChange} required>
                 <option value="">-- Pilih Pasien --</option>
 
                 {patients.map((patient) => (
@@ -180,12 +181,7 @@ function Registrations() {
               <label>Dokter</label>
               <br />
 
-              <select
-                name="doctor_id"
-                value={form.doctor_id}
-                onChange={handleChange}
-                required
-              >
+              <select name="doctor_id" value={form.doctor_id} onChange={handleChange} required>
                 <option value="">-- Pilih Dokter --</option>
 
                 {doctors.map((doctor) => (
@@ -202,16 +198,7 @@ function Registrations() {
               <label>Poli</label>
               <br />
 
-              <input
-                type="text"
-                value={
-                  doctors.find(
-                    (doctor) => doctor.id === Number(form.doctor_id)
-                  )?.Poli?.nama_poli || ""
-                }
-                placeholder="Otomatis berdasarkan dokter"
-                readOnly
-              />
+              <input type="text" value={doctors.find((doctor) => doctor.id === Number(form.doctor_id))?.Poli?.nama_poli || ""} placeholder="Otomatis berdasarkan dokter" readOnly />
             </div>
 
             <br />
@@ -220,14 +207,7 @@ function Registrations() {
               <label>Tanggal Kunjungan</label>
               <br />
 
-              <input
-                type="date"
-                name="tanggal_kunjungan"
-                value={form.tanggal_kunjungan}
-                onChange={handleChange}
-                min={new Date().toISOString().split("T")[0]}
-                required
-              />
+              <input type="date" name="tanggal_kunjungan" value={form.tanggal_kunjungan} onChange={handleChange} min={new Date().toISOString().split("T")[0]} required />
             </div>
 
             <br />
@@ -236,12 +216,7 @@ function Registrations() {
               <label>Jenis Pembayaran</label>
               <br />
 
-              <select
-                name="jenis_pembayaran"
-                value={form.jenis_pembayaran}
-                onChange={handleChange}
-                required
-              >
+              <select name="jenis_pembayaran" value={form.jenis_pembayaran} onChange={handleChange} required>
                 <option value="Umum">Umum</option>
                 <option value="BPJS">BPJS</option>
               </select>
@@ -253,13 +228,7 @@ function Registrations() {
               <label>Keluhan Awal</label>
               <br />
 
-              <textarea
-                name="keluhan_awal"
-                value={form.keluhan_awal}
-                onChange={handleChange}
-                placeholder="Masukkan keluhan awal pasien"
-                rows="4"
-              />
+              <textarea name="keluhan_awal" value={form.keluhan_awal} onChange={handleChange} placeholder="Masukkan keluhan awal pasien" rows="4" />
             </div>
 
             <br />
@@ -290,6 +259,7 @@ function Registrations() {
                     <th>Pembayaran</th>
                     <th>Keluhan</th>
                     <th>Status</th>
+                    <th>Aksi</th>
                   </tr>
                 </thead>
 
@@ -298,32 +268,27 @@ function Registrations() {
                     <tr key={registration.id}>
                       <td>{index + 1}</td>
 
-                      <td>
-                        {registration.Patient?.nama || "-"}
-                      </td>
+                      <td>{registration.Patient?.nama || "-"}</td>
+
+                      <td>{registration.Doctor?.nama_dokter || "-"}</td>
+
+                      <td>{registration.Poli?.nama_poli || "-"}</td>
+
+                      <td>{registration.tanggal_kunjungan}</td>
+
+                      <td>{registration.jenis_pembayaran}</td>
+
+                      <td>{registration.keluhan_awal || "-"}</td>
+
+                      <td>{registration.status}</td>
 
                       <td>
-                        {registration.Doctor?.nama_dokter || "-"}
-                      </td>
-
-                      <td>
-                        {registration.Poli?.nama_poli || "-"}
-                      </td>
-
-                      <td>
-                        {registration.tanggal_kunjungan}
-                      </td>
-
-                      <td>
-                        {registration.jenis_pembayaran}
-                      </td>
-
-                      <td>
-                        {registration.keluhan_awal || "-"}
-                      </td>
-
-                      <td>
-                        {registration.status}
+                        <select value={registration.status} onChange={(e) => handleStatusChange(registration.id, e.target.value)}>
+                          <option value="menunggu">Menunggu</option>
+                          <option value="checkin">Check In</option>
+                          <option value="pemeriksaan">Pemeriksaan</option>
+                          <option value="selesai">Selesai</option>
+                        </select>
                       </td>
                     </tr>
                   ))}

@@ -1,7 +1,9 @@
 const express = require('express');
+
 const router = express.Router();
 
 const queueController = require('../controllers/queueController');
+
 const { verifyToken, checkRole } = require('../middlewares/authMiddleware');
 
 router.use(verifyToken);
@@ -16,11 +18,11 @@ router.post(
   queueController.createQueue
 );
 
-// PUT panggil antrean berikutnya
+// PUT panggil antrean berdasarkan ID
 router.put(
-  '/call',
+  '/:id/call',
   checkRole(['administrator', 'petugas_pendaftaran']),
-  queueController.callNextQueue
+  queueController.callQueue
 );
 
 // PUT update status antrean
