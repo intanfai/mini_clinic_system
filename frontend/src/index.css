@@ -1,3 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap");
+
+/* =========================
+   RESET & GLOBAL
+========================= */
+
 * {
   margin: 0;
   padding: 0;
@@ -5,6 +11,907 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f5f7fa;
+  font-family: "IBM Plex Sans", Arial, sans-serif;
+  background: #f3f6f1;
+  color: #1b211d;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  width: 240px;
+  height: 100vh;
+
+  background: #16332a;
+  color: #eaf1ec;
+
+  padding: 2rem 1.25rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  z-index: 100;
+}
+
+/* =========================
+   SIDEBAR BRAND
+========================= */
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+
+  gap: 0.75rem;
+
+  margin-bottom: 2rem;
+  padding: 0 0.5rem;
+}
+
+.brand-icon {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #c1443d;
+  color: white;
+
+  border-radius: 6px;
+}
+
+.sidebar-brand h2 {
+  font-family: "IBM Plex Serif", Georgia, serif;
+
+  font-size: 1.2rem;
+  font-weight: 600;
+
+  color: #ffffff;
+}
+
+.sidebar-brand span {
+  display: block;
+
+  margin-top: 0.15rem;
+
+  font-size: 0.7rem;
+
+  color: #b7c8bd;
+}
+
+/* =========================
+   SIDEBAR USER ROLE
+========================= */
+
+.sidebar-user {
+  margin-bottom: 1.5rem;
+  padding: 0 0.5rem;
+}
+
+.sidebar-user-info {
+  padding: 0.8rem;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 7px;
+}
+
+.sidebar-user-label {
+  display: block;
+
+  margin-bottom: 0.2rem;
+
+  font-size: 0.68rem;
+
+  color: #91aa9b;
+}
+
+.sidebar-user-info strong {
+  display: block;
+
+  font-size: 0.82rem;
+
+  font-weight: 500;
+
+  color: #eaf1ec;
+}
+
+/* =========================
+   SIDEBAR NAVIGATION
+========================= */
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.35rem;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+
+  gap: 0.75rem;
+
+  padding: 0.7rem 0.8rem;
+
+  color: #b7c8bd;
+
+  border-radius: 6px;
+
+  font-size: 0.9rem;
+
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.sidebar-link svg {
+  width: 19px;
+  height: 19px;
+
+  flex-shrink: 0;
+}
+
+.sidebar-link:hover {
+  background: #23463a;
+  color: #eaf1ec;
+}
+
+.sidebar-link.active {
+  background: #1f4d3d;
+  color: #ffffff;
+}
+
+/* =========================
+   LOGOUT
+========================= */
+
+.logout-button {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 0.75rem;
+
+  padding: 0.7rem 0.8rem;
+
+  border: none;
+  border-radius: 6px;
+
+  background: transparent;
+
+  color: #b7c8bd;
+
+  font-family: inherit;
+  font-size: 0.9rem;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.logout-button svg {
+  width: 19px;
+  height: 19px;
+
+  flex-shrink: 0;
+}
+
+.logout-button:hover {
+  background: #23463a;
+  color: white;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+main {
+  margin-left: 240px;
+
+  min-height: 100vh;
+
+  padding: 2.5rem 3rem;
+
+  background: #f3f6f1;
+}
+
+/* =========================
+   HEADING
+========================= */
+
+main h1 {
+  font-family: "IBM Plex Serif", Georgia, serif;
+
+  font-size: 2rem;
+  font-weight: 600;
+
+  color: #1b211d;
+
+  margin-bottom: 0.4rem;
+}
+
+main > p {
+  color: #5b6b62;
+
+  font-size: 0.9rem;
+
+  margin-bottom: 2rem;
+}
+
+/* =========================
+   DASHBOARD HEADING
+========================= */
+
+.dashboard-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  margin-bottom: 2rem;
+}
+
+.dashboard-heading p {
+  margin-top: 0.35rem;
+
+  color: #5b6b62;
+
+  font-size: 0.9rem;
+}
+
+.role-badge {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 0.45rem 0.75rem;
+
+  border-radius: 20px;
+
+  background: #e8eee9;
+
+  border: 1px solid #cdd8d0;
+
+  color: #1f4d3d;
+
+  font-size: 0.75rem;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+main button {
+  padding: 0.65rem 1rem;
+
+  border: none;
+  border-radius: 6px;
+
+  background: #1f4d3d;
+
+  color: #f3f6f1;
+
+  font-family: inherit;
+
+  font-size: 0.85rem;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    transform 0.1s ease;
+}
+
+main button:hover:not(:disabled) {
+  background: #163a2d;
+}
+
+main button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+main button:disabled {
+  background: #8fa79a;
+
+  cursor: not-allowed;
+}
+
+/* =========================
+   FORM
+========================= */
+
+main form {
+  max-width: 100%;
+}
+
+main form > div {
+  margin-bottom: 1.1rem;
+}
+
+main form label {
+  display: block;
+
+  margin-bottom: 0.4rem;
+
+  font-size: 0.85rem;
+  font-weight: 500;
+
+  color: #1b211d;
+}
+
+main input,
+main select,
+main textarea {
+  width: 100%;
+
+  padding: 0.7rem 0.85rem;
+
+  font-family: inherit;
+  font-size: 0.9rem;
+
+  color: #1b211d;
+
+  background: white;
+
+  border: 1px solid #cdd8d0;
+
+  border-radius: 6px;
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+main input::placeholder,
+main textarea::placeholder {
+  color: #93a49a;
+}
+
+main input:focus,
+main select:focus,
+main textarea:focus {
+  outline: none;
+
+  border-color: #1f4d3d;
+
+  box-shadow: 0 0 0 3px rgba(31, 77, 61, 0.12);
+}
+
+main textarea {
+  min-height: 90px;
+
+  resize: vertical;
+}
+
+/* =========================
+   FORM HEADING
+========================= */
+
+main form h2 {
+  font-family: "IBM Plex Serif", Georgia, serif;
+
+  font-size: 1.35rem;
+  font-weight: 600;
+
+  margin-bottom: 1.5rem;
+
+  color: #1b211d;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+main h2 {
+  font-family: "IBM Plex Serif", Georgia, serif;
+
+  font-size: 1.35rem;
+  font-weight: 600;
+
+  color: #1b211d;
+
+  margin: 1.5rem 0 1rem;
+}
+
+main h3 {
+  font-family: "IBM Plex Serif", Georgia, serif;
+
+  font-size: 1.05rem;
+  font-weight: 600;
+
+  color: #1b211d;
+
+  margin-bottom: 0.75rem;
+}
+
+main hr {
+  border: none;
+
+  border-top: 1px solid #d7e0d9;
+
+  margin: 2rem 0;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+main table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  background: white;
+
+  border: 1px solid #d7e0d9;
+
+  border-radius: 6px;
+
+  overflow: hidden;
+
+  font-size: 0.85rem;
+}
+
+main th {
+  padding: 0.85rem 0.75rem;
+
+  background: #e8eee9;
+
+  color: #1f4d3d;
+
+  font-weight: 600;
+
+  text-align: left;
+
+  border-bottom: 1px solid #cdd8d0;
+}
+
+main td {
+  padding: 0.8rem 0.75rem;
+
+  border-bottom: 1px solid #e1e7e2;
+
+  color: #3f4d45;
+}
+
+main tbody tr:hover {
+  background: #f7f9f7;
+}
+
+main tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* =========================
+   TABLE BUTTON
+========================= */
+
+main td button {
+  margin-right: 0.35rem;
+
+  margin-bottom: 0.25rem;
+
+  padding: 0.45rem 0.7rem;
+
+  font-size: 0.78rem;
+}
+
+/* =========================
+   STATUS SELECT
+========================= */
+
+main td select {
+  width: auto;
+
+  min-width: 130px;
+}
+
+/* =========================
+   DASHBOARD CARDS
+========================= */
+
+.dashboard-cards {
+  display: grid;
+
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(180px, 1fr)
+  );
+
+  gap: 1rem;
+
+  margin-top: 2rem;
+}
+
+.dashboard-card {
+  background: white;
+
+  border: 1px solid #d7e0d9;
+
+  border-radius: 10px;
+
+  padding: 1.25rem;
+
+  min-height: 145px;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 5px 18px rgba(27, 33, 29, 0.07);
+}
+
+.dashboard-card-header {
+  display: flex;
+  align-items: center;
+
+  gap: 0.7rem;
+}
+
+.dashboard-card-icon {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #e8eee9;
+
+  color: #1f4d3d;
+
+  border-radius: 8px;
+}
+
+.dashboard-card-title {
+  font-size: 0.82rem;
+
+  font-weight: 500;
+
+  color: #5b6b62;
+}
+
+.dashboard-card-value {
+  margin-top: 1.25rem;
+
+  font-size: 2rem;
+
+  line-height: 1;
+
+  font-weight: 600;
+
+  color: #1b211d;
+}
+
+/* =========================
+   DASHBOARD CHART
+========================= */
+
+.dashboard-chart {
+  margin-top: 1.5rem;
+
+  background: white;
+
+  border: 1px solid #d7e0d9;
+
+  border-radius: 10px;
+
+  padding: 1.5rem;
+}
+
+.dashboard-chart-header h2 {
+  margin: 0;
+
+  font-family: "IBM Plex Serif", Georgia, serif;
+
+  font-size: 1.25rem;
+
+  color: #1b211d;
+}
+
+.dashboard-chart-header p {
+  margin-top: 0.35rem;
+
+  color: #5b6b62;
+
+  font-size: 0.85rem;
+}
+
+.chart-container {
+  width: 100%;
+
+  height: 300px;
+
+  margin-top: 1.5rem;
+}
+
+/* =========================
+   PAGE SECTION / CARD
+========================= */
+
+.page-section {
+  background: white;
+
+  border: 1px solid #d7e0d9;
+
+  border-radius: 10px;
+
+  padding: 1.5rem;
+
+  margin-bottom: 1.5rem;
+}
+
+/* =========================
+   SEARCH / TOOLBAR
+========================= */
+
+.page-toolbar {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  margin-bottom: 1.5rem;
+}
+
+.page-toolbar-left {
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.75rem;
+
+  flex: 1;
+}
+
+.page-toolbar-right {
+  display: flex;
+
+  align-items: center;
+
+  gap: 0.5rem;
+}
+
+/* =========================
+   ICON BUTTON
+========================= */
+
+.icon-button {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 0.4rem;
+
+  padding: 0.5rem 0.7rem;
+}
+
+.icon-button svg {
+  flex-shrink: 0;
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.empty-state {
+  padding: 3rem 1rem;
+
+  text-align: center;
+
+  color: #6d7c73;
+
+  font-size: 0.9rem;
+}
+
+/* =========================
+   ERROR MESSAGE
+========================= */
+
+.error-message {
+  padding: 0.8rem 1rem;
+
+  margin-bottom: 1rem;
+
+  background: #fbeceb;
+
+  border: 1px solid #e8c5c2;
+
+  border-radius: 6px;
+
+  color: #9b3934;
+
+  font-size: 0.85rem;
+}
+
+/* =========================
+   SUCCESS MESSAGE
+========================= */
+
+.success-message {
+  padding: 0.8rem 1rem;
+
+  margin-bottom: 1rem;
+
+  background: #eaf3ed;
+
+  border: 1px solid #c9ddd0;
+
+  border-radius: 6px;
+
+  color: #286046;
+
+  font-size: 0.85rem;
+}
+
+/* =========================
+   RESPONSIVE - TABLET
+========================= */
+
+@media (max-width: 1100px) {
+  .dashboard-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* =========================
+   RESPONSIVE - SMALL TABLET
+========================= */
+
+@media (max-width: 900px) {
+  .sidebar {
+    width: 210px;
+  }
+
+  main {
+    margin-left: 210px;
+
+    padding: 2rem;
+  }
+
+  .dashboard-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .page-toolbar {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .page-toolbar-left,
+  .page-toolbar-right {
+    width: 100%;
+  }
+}
+
+/* =========================
+   RESPONSIVE - MOBILE
+========================= */
+
+@media (max-width: 700px) {
+  .sidebar {
+    position: relative;
+
+    width: 100%;
+
+    height: auto;
+
+    min-height: auto;
+
+    padding: 1rem;
+  }
+
+  .sidebar-brand {
+    margin-bottom: 1rem;
+  }
+
+  .sidebar-user {
+    margin-bottom: 1rem;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+
+    flex-wrap: wrap;
+  }
+
+  .sidebar-link {
+    flex: 1;
+
+    min-width: 140px;
+  }
+
+  .logout-button {
+    margin-top: 1rem;
+  }
+
+  main {
+    margin-left: 0;
+
+    padding: 1.5rem;
+  }
+
+  .dashboard-heading {
+    flex-direction: column;
+  }
+
+  .dashboard-cards {
+    grid-template-columns: 1fr;
+  }
+
+  main table {
+    display: block;
+
+    overflow-x: auto;
+
+    white-space: nowrap;
+  }
+}
+
+/* =========================
+   RESPONSIVE - MOBILE SMALL
+========================= */
+
+@media (max-width: 480px) {
+  main {
+    padding: 1rem;
+  }
+
+  main h1 {
+    font-size: 1.65rem;
+  }
+
+  .sidebar-link {
+    min-width: 100%;
+  }
+
+  .dashboard-card {
+    min-height: 130px;
+  }
+
+  .dashboard-card-value {
+    font-size: 1.75rem;
+  }
+
+  .dashboard-chart {
+    padding: 1rem;
+  }
+
+  .chart-container {
+    height: 250px;
+  }
 }

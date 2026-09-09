@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
+import "./Login.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -44,36 +45,73 @@ function Login() {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Masukkan email"
-          />
+    <div className="login-page">
+      <aside className="login-visual" aria-hidden="true">
+        <div className="login-visual-content">
+          <span className="login-mark">Mini Clinic</span>
+          <p className="login-visual-caption">
+            Sistem manajemen rekam medis dan layanan pasien.
+          </p>
         </div>
 
-        <div>
-          <label>Password</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Masukkan password"
+        <svg
+          className="login-pulse"
+          viewBox="0 0 600 120"
+          preserveAspectRatio="none"
+        >
+          <polyline
+            points="0,60 120,60 145,60 160,20 180,100 200,60 230,60 600,60"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
-        </div>
+        </svg>
+      </aside>
 
-        {error && <p>{error}</p>}
+      <main className="login-form-panel">
+        <form className="login-form" onSubmit={handleLogin} noValidate>
+          <h1>Masuk</h1>
+          <p className="login-subtitle">
+            Gunakan akun staf klinik untuk melanjutkan.
+          </p>
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Logging in..." : "Login"}
-        </button>
-      </form>
+          <div className="login-field">
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="nama@klinik.com"
+              autoComplete="username"
+            />
+          </div>
+
+          <div className="login-field">
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Masukkan password"
+              autoComplete="current-password"
+            />
+          </div>
+
+          {error && (
+            <p className="login-error" role="alert">
+              {error}
+            </p>
+          )}
+
+          <button type="submit" disabled={loading}>
+            {loading ? "Memproses..." : "Masuk"}
+          </button>
+        </form>
+      </main>
     </div>
   );
 }

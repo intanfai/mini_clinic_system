@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { jwtDecode } from "jwt-decode";
+import { getUserRole } from "../utils/auth";
 import api from "../services/api";
 import Sidebar from "../components/Sidebar";
 
@@ -32,24 +32,7 @@ function Patients() {
   const [selectedPatient, setSelectedPatient] = useState(null);
   const [detailLoading, setDetailLoading] = useState(false);
 
-  // Ambil role user dari JWT
-  const [userRole, setUserRole] = useState("");
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    if (token) {
-      try {
-        const decoded = jwtDecode(token);
-
-        console.log("User dari token:", decoded);
-
-        setUserRole(decoded.role);
-      } catch (error) {
-        console.error("Token tidak valid:", error);
-      }
-    }
-  }, []);
+  const userRole = getUserRole();
 
   const getPatients = async () => {
     try {
@@ -233,8 +216,7 @@ function Patients() {
         <p>Kelola data pasien klinik.</p>
 
         {/* TOMBOL TAMBAH */}
-        <button onClick={handleAddPatient}>+ Tambah Pasien</button>
-
+        {(userRole === "administrator" || userRole === "petugas_pendaftaran") && <button onClick={handleAddPatient}>+ Tambah Pasien</button>}
         <br />
         <br />
 
@@ -402,10 +384,13 @@ function Patients() {
                       <td>{patient.no_telp || "-"}</td>
 
                       <td>
+                        {/* SEMUA ROLE */}
                         <button onClick={() => handleDetail(patient.id)}>Detail</button>
 
-                        <button onClick={() => handleEdit(patient)}>Edit</button>
+                        {/* ADMIN + PETUGAS */}
+                        {(userRole === "administrator" || userRole === "petugas_pendaftaran") && <button onClick={() => handleEdit(patient)}>Edit</button>}
 
+                        {/* ADMIN SAJA */}
                         {userRole === "administrator" && <button onClick={() => handleDelete(patient)}>Hapus</button>}
                       </td>
                     </tr>
