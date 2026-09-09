@@ -31,5 +31,8 @@ app.use("/api/medical-records", medicalRecordRoutes);
 const prescriptionRoutes = require("./routes/prescriptionRoutes");
 app.use("/api/prescriptions", prescriptionRoutes);
 
+const dashboardRoutes = require("./routes/dashboardRoutes");
+app.use("/api/dashboard", dashboardRoutes);
+
 module.exports = app;
 
