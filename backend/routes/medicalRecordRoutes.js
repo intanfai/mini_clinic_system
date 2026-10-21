@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const medicalRecordController = require("../controllers/medicalRecordController");
-const { verifyToken, checkRole } = require("../middleware/authMiddleware");
+const { verifyToken, checkRole } = require("../middlewares/authMiddleware");
 
 router.use(verifyToken);
 

@@ -34,5 +34,7 @@ app.use("/api/prescriptions", prescriptionRoutes);
 const dashboardRoutes = require("./routes/dashboardRoutes");
 app.use("/api/dashboard", dashboardRoutes);
 
-module.exports = app;
+const reportRoutes = require("./routes/reportRoutes");
+app.use("/api/reports", reportRoutes);
 
+module.exports = app; 
