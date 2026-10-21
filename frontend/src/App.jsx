@@ -7,8 +7,8 @@ import Registrations from "./pages/Registrations";
 import Queues from "./pages/Queues";
 import MedicalRecords from "./pages/MedicalRecords";
 import Prescriptions from "./pages/Prescriptions";
-
 import ProtectedRoute from "./components/ProtectedRoute";
+import Report from "./pages/Report";
 
 function App() {
   return (
@@ -73,6 +73,16 @@ function App() {
           element={
             <ProtectedRoute allowedRoles={["administrator", "dokter"]}>
               <Prescriptions />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* LAPORAN KUNJUNGAN - SEMUA ROLE */}
+        <Route
+          path="/reports"
+          element={
+            <ProtectedRoute allowedRoles={["administrator", "dokter", "petugas_pendaftaran"]}>
+              <Report />
             </ProtectedRoute>
           }
         />

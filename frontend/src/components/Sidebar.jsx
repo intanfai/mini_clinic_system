@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { LayoutDashboard, Users, ClipboardList, Ticket, Stethoscope, Pill, LogOut, Plus } from "lucide-react";
+import { LayoutDashboard, Users, ClipboardList, Ticket, Stethoscope, Pill, LogOut, Plus, ChartColumn } from "lucide-react";
 import { getCurrentUser, logout } from "../utils/auth";
 
 function Sidebar() {
@@ -65,6 +65,11 @@ function Sidebar() {
           <NavLink to="/patients" className="sidebar-link">
             <Users size={19} />
             <span>Pasien</span>
+          </NavLink>
+
+          <NavLink to="/reports" className="sidebar-link">
+            <ChartColumn size={19} />
+            <span>Laporan Kunjungan</span>
           </NavLink>
 
           {/* ADMIN + PETUGAS */}
